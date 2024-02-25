@@ -1,0 +1,58 @@
+body {
+    /* For quick theme toggling
+    https://www.w3schools.com/css/css3_variables.asp
+    */
+    --navbar-button-bg-color: rgb(216, 226, 240);
+    --navbar-container-color: rgb(168, 168, 196);
+
+    padding: 0;
+    margin: 0;
+}
+
+/* Top header */
+
+.header {
+    background-color: var(--navbar-container-color);
+
+    border-bottom: groove 2px;
+    padding: 1.5rem 0 1.75rem 0;
+    margin: 0;
+}
+
+#site-logo {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: large;
+    /* flo  at: left; */
+    padding: 2rem;
+}
+
+.header-links {
+    display: block;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-right: .75vw;
+    clear: none;
+    float: right;
+}
+
+.header-links li {
+    background-color: var(--navbar-button-bg-color);
+    border-radius: 5px;
+
+    margin-left: 5vw;
+    padding: .25rem;
+    float: left;
+}
+
+.header li a {
+    text-decoration: none;
+    color: black;
+    padding: 20px 30px;
+}
+
+.header-links a:hover {}
+
+.push {
+    margin-left: auto;
+}
