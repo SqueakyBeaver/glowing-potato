@@ -16,4 +16,3 @@ function coffeeClickDisable() {
     coffeePNG.setAttribute("height", "30px");
     x.parentNode.appendChild(coffeePNG)
 }
-  
