@@ -1,40 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Animal Facts!</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Animal Facts!</title>
 
-    <link href="index.css" rel="stylesheet" />
-    <script src="index.js"></script>
-  </head>
-  <body>
-    <!-- Top header -->
-    <header class="header">
-      <!-- TODO: make it fancier or something -->
-      <a id="site-logo">Animal Facts</a>
-      <ul class="header-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Placeholder</a></li>
-      </ul>
-    </header>
-    <!-- <div class="coffee-container">
-        <button onclick="coffeeClicked()" id="coffeeButton" name="coffe-button" type="button" style="min-width: 75%;">
-            Gib me coffee :3
-        </button>
-    </div> -->
-    <!-- Main section of content -->
-    <div id="main-container">
-      <!-- Input -->
+        <link href="index.css" rel="stylesheet" />
+        <script src="index.js"></script>
+    </head>
+    <body>
+        <!-- Top header -->
+        <header class="top-header">
+            <!-- TODO: make it fancier or something -->
+            <a id="site-logo">Animal Facts</a>
+            <ul class="header-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Placeholder</a></li>
+            </ul>
+        </header>
+        <!-- Sidebar thingy on the right -->
+        <div class="right-sidebar">
+            <!-- This is just a button to do something funny -->
+            <div class="coffee-container">
+                <button
+                    onclick="coffeeClicked()"
+                    id="coffeeButton"
+                    name="coffe-button"
+                    type="button"
+                    style="min-width: 75%">
+                    Click for coffee
+                </button>
+            </div>
+        </div>
 
-        <!-- This will group the input elements together and make it easier to handle with js    -->
-        <form id="input-form">
-          <input type="text" />
-          <!-- TODO find a way to make a good looking one -->
-          <button>Submit</button>
-        </form>
-      </div>
-    </div>
-  </body>
+        <!-- Main section of content -->
+        <div id="main-container">
+            <!-- Input -->
+            <form id="input-form">
+                <input type="text" />
+                <!-- TODO find a way to make a good looking one -->
+                <button>Submit</button>
+            </form>
+        </div>
+    </body>
 </html>
