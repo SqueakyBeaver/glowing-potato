@@ -1,128 +1,126 @@
-:root {
+body {
     /* 
     For quick theme toggling and so all colors are in one place
     See: https://www.w3schools.com/css/css3_variables.asp
+
+    Todo: pretty 
     */
-    /* Todo: pretty */
-    --navbar-button-bg-color: rgb(216, 226, 240);
-    --navbar-container-color: rgb(168, 168, 196);
-    --main-content-bg-color: rgb(233, 233, 255);
-    --main-content-border-color: rgb(39, 39, 80);
-    --input-box-border-color: rgb(1, 1, 94);
-    --input-box-border-color-active: rgb(67, 67, 207);
+    --navbar-button-bg-color: rgb(216 226 240);
+    --navbar-container-color: rgb(168 168 196);
+    --main-content-bg-color: rgb(233 233 255);
+    --main-content-border-color: rgb(39 39 80);
+    --input-box-border-color: rgb(1 1 94);
+    --input-box-border-color-active: rgb(67 67 207);
 
     padding: 0;
     margin: 0;
 }
 
-
 /* Top header */
 .top-header {
-    background-color: var(--navbar-container-color);
+    padding: 1.5rem 0 1.75rem;
     border-bottom: groove 2px;
-    padding: 1.5rem 0 1.75rem 0;
     margin: 0;
     margin-bottom: 5vh;
+    background-color: var(--navbar-container-color);
 }
 
 #site-logo {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 200%;
     padding: 2rem;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: 200%;
 }
 
 .header-links {
     display: block;
-    list-style: none;
     padding: 0;
     margin: 0;
-    margin-right: .75vw;
+    margin-right: 0.75vw;
     clear: none;
     float: right;
+    list-style: none;
 }
 
 .header-links li {
-    background-color: var(--navbar-button-bg-color);
+    padding: 1vh 1vw;
     border-radius: 5px;
     margin-left: 5vw;
-    padding: 1vh 1vw;
+    background-color: var(--navbar-button-bg-color);
     float: left;
 }
 
 .top-header li a {
-    text-decoration: none;
     color: black;
+    text-decoration: none;
 }
 
 .top-header li:hover {
     outline: 2px solid skyblue;
 }
 
-
 /* Right sidebar thing */
 .right-sidebar {
     position: relative;
-    background-color: rgb(108, 145, 177);
-    border-radius: 10px;
-    float: right;
-    height: 75vh;
     width: 25%;
-    margin-left: 2%;
+    height: 75vh;
+    border-radius: 10px;
     margin-right: 2%;
+    margin-left: 2%;
+    background-color: rgb(108 145 177);
+    float: right;
 }
 
 .coffee-container {
-    margin: auto;
     width: fit-content;
+    margin: auto;
 }
-
 
 /* Main content */
 #main-container {
-    min-height: 75vh;
+    position: relative;
     width: 40%;
-    margin: auto;
-    background-color: var(--main-content-bg-color);
+    min-height: 75vh;
+    padding: 0;
     border: 2px solid var(--main-content-border-color);
     border-radius: 5px;
-    position: relative;
-    padding: 0;
+    margin: auto;
+    background-color: var(--main-content-bg-color);
 }
 
 /* Input box */
 #input-form {
+    position: absolute;
+    bottom: 0.25rem;
+    left: 1%;
     width: 98%;
     height: 3rem;
-    position: absolute;
-    bottom: .25rem;
-    left: 1%;
-    margin: 0;
     padding: 0;
+    margin: 0;
 }
 
 #input-form input {
-    border: 2px solid var(--input-box-border-color);
-    border-radius: 10px;
-    background-color: white;
-    margin: 0;
-    padding: 0;
-    padding-left: 2px;
-    /* Width and height will account for the border width and the padding*/
+    /* Width and height will account for the border width and the padding */
     width: calc(100% - 6px);
     height: calc(100% - 8px);
-    transition: all ease-in-out .4s;
+    padding: 0;
+    padding-left: 2px;
+    border: 2px solid var(--input-box-border-color);
+    border-radius: 10px;
+    margin: 0;
+    background-color: white;
+    transition: all ease-in-out 0.4s;
 }
 
 #input-form button {
-    height: calc(100% - 8px);
     position: absolute;
     top: 2px;
     right: 2px;
-    border-radius: 0 8px 8px 0;
+    height: calc(100% - 8px);
     border: 2px solid darkgrey;
+    border-radius: 0 8px 8px 0;
 }
 
 #input-form input:focus {
-    outline: none;
     border-color: var(--input-box-border-color-active);
+    outline: none;
 }
