@@ -3,5 +3,9 @@
         "stylelint-config-standard",
         "stylelint-config-idiomatic-order"
     ],
-    "plugins": ["stylelint-order"]
+    "plugins": ["stylelint-order"],
+    "rules": {
+        "color-function-notation": "legacy",
+        "hue-degree-notation": "number"
+    }
 }
