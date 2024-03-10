@@ -6,9 +6,10 @@
         <title>Animal Facts!</title>
 
         <link href="index.css" rel="stylesheet" />
-        <script src="index.js"></script>
     </head>
     <body>
+        <!-- When popups happen, this will make everything else dim and unclickable -->
+        <!-- Clicking on it will close the popup (when I finish implementing it) -->
         <div class="background-dimmer"></div>
         <!-- Top header -->
         <header class="top-header">
@@ -26,7 +27,7 @@
                 <!-- TODO: Remove onclick here -->
                 <button
                     onclick="coffeeClicked()"
-                    id="coffeeButton"
+                    id="coffee-button"
                     name="coffe-button"
                     type="button"
                     style="min-width: 75%">
@@ -34,6 +35,7 @@
                 </button>
             </div>
         </div>
+        <script src="coffee.js"></script>
 
         <!-- Main section of content -->
         <div id="main-container">
@@ -41,23 +43,13 @@
             <div id="inputs-outputs-container">
                 <p class="server-sent in-out-bubble">This is a test</p>
                 <p class="user-sent in-out-bubble">This is a test</p>
-                <p class="user-sent in-out-bubble">This is a test</p>
-                <p class="user-sent in-out-bubble">This is a test</p>
-                <p class="user-sent in-out-bubble">This is a test</p>
-                <p class="user-sent in-out-bubble">This is a test</p>
-                <p class="user-sent in-out-bubble">This is a test</p>
-                <p class="user-sent in-out-bubble">This is a test</p>
-                <p class="user-sent in-out-bubble">This is a test</p>
-                <p class="user-sent in-out-bubble">This is a test</p>
-                <p class="user-sent in-out-bubble">This is a test</p>
-                <p class="user-sent in-out-bubble">This is a test</p>
             </div>
             <!-- Input -->
-            <form id="input-form">
-                <input type="text" />
-                <!-- TODO find a way to make a good looking one -->
-                <button>Submit</button>
-            </form>
+            <div id="input-container">
+                <input id="main-input" type="text" />
+                <button id="submit-main-input">Submit</button>
+            </div>
         </div>
+        <script src="input.js"></script>
     </body>
 </html>
