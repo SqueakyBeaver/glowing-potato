@@ -6,20 +6,30 @@
         <title>Animal Facts!</title>
 
         <link href="index.css" rel="stylesheet" />
+        <!-- Since this is just a class declaration,
+            there is no need to put this in the body -->
+        <script  src="js/PopupContainer.js"></script>
     </head>
     <body>
         <!-- When popups happen, this will make everything else dim and unclickable -->
         <!-- Clicking on it will close the popup (when I finish implementing it) -->
-        <div class="background-dimmer"></div>
+        <div class="popup-container">
+            <div class="background-dimmer"></div>
+            <div class="popup">
+                <p>Hello your mom is very cool wink wonk</p>
+            </div>
+        </div>
+
         <!-- Top header -->
         <header class="top-header">
             <a id="site-logo">Animal Facts</a>
             <ul class="header-links">
                 <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
+                <li id="about-link">About</li>
                 <li><a href="#">Placeholder</a></li>
             </ul>
         </header>
+
         <!-- Sidebar thingy on the right -->
         <div class="right-sidebar">
             <!-- This is just a button to do something funny -->
@@ -35,7 +45,9 @@
                 </button>
             </div>
         </div>
-        <script src="coffee.js"></script>
+        <!-- The  allows for using es6 import syntax,
+            which I like more than require() -->
+        <script src="js/coffee.js" ></script>
 
         <!-- Main section of content -->
         <div id="main-container">
@@ -46,10 +58,14 @@
             </div>
             <!-- Input -->
             <div id="input-container">
-                <input id="main-input" type="text" placeholder="Enter your guess" />
+                <input
+                    id="main-input"
+                    type="text"
+                    placeholder="Enter your guess" />
                 <button id="submit-main-input">Submit</button>
             </div>
         </div>
-        <script src="input.js"></script>
+        <script src="js/input.js"></script>
+        <script src="js/popups.js" ></script>
     </body>
 </html>

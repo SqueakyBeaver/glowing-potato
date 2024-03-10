@@ -15,6 +15,8 @@
     --server-bubble-color-to: hsl(239, 75%, 85%);
     --user-bubble-color-from: hsl(330, 30%, 70%);
     --user-bubble-color-to: hsl(330, 75%, 85%);
+    --popup-bg-color-from: hsl(150, 100%, 75%);
+    --popup-bg-color-to: hsl(150, 100%, 91%);
 
     /* Non-gradient colors */
     --secondary-border-color: hsl(271.3, 96%, 9.8%);
@@ -27,13 +29,34 @@ body {
     margin: 0;
 }
 
-.background-dimmer {
-    position: absolute;
-    z-index: 100000;
+/* Popups */
+.popup-container {
+    /* position: absolute; */
     display: none;
+    transition: all 1s linear;
+}
+
+.background-dimmer {
+    position: fixed;
+    top: 0;
+    left: 0;    
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 70%);
+}
+
+.popup {
+    position: fixed;
+    top: calc((100vh - 55vw) / 2);
+    left: 25vw;
+    width: 50vw;
+    height: 50vw;
+    border-radius: 10px;
+    background: radial-gradient(
+        circle,
+        var(--popup-bg-color-from),
+        var(--popup-bg-color-to)
+    );
 }
 
 /* Top header */
@@ -184,7 +207,7 @@ body {
     height: 100%;
     box-sizing: border-box; /* Makes it so that the width includes the border and padding */
     padding: 0;
-    padding-left: .5em;
+    padding-left: 0.5em;
     border: 2px solid var(--secondary-border-color);
     border-radius: 10px;
     margin: 0;
