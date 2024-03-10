@@ -180,11 +180,11 @@ body {
 }
 
 #input-container input {
-    /* Width and height will account for the border width and the padding */
-    width: calc(100% - 6px);
-    height: calc(100% - 4px);
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box; /* Makes it so that the width includes the border and padding */
     padding: 0;
-    padding-left: 2px;
+    padding-left: .5em;
     border: 2px solid var(--secondary-border-color);
     border-radius: 10px;
     margin: 0;
