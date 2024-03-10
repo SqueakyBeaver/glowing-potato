@@ -1,4 +1,4 @@
-body {
+:root {
     /* 
     For quick theme toggling and so all colors are in one place
     See: https://www.w3schools.com/css/css3_variables.asp
@@ -20,8 +20,9 @@ body {
     --secondary-border-color: hsl(271.3, 96%, 9.8%);
     --secondary-border-color-active: hsl(271.1, 77.8%, 42.4%);
     --primary-border-color: hsl(240, 34.5%, 23.3%);
+}
 
-
+body {
     padding: 0;
     margin: 0;
 }
@@ -29,10 +30,11 @@ body {
 .background-dimmer {
     position: absolute;
     z-index: 100000;
+    display: none;
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 70%);
-} 
+}
 
 /* Top header */
 .top-header {
@@ -40,7 +42,10 @@ body {
     border-bottom: groove 2px;
     margin: 0;
     margin-bottom: 5vh;
-    background: linear-gradient( var(--primary-bg-color-from), var(--primary-bg-color-to));
+    background: linear-gradient(
+        var(--primary-bg-color-from),
+        var(--primary-bg-color-to)
+    );
 }
 
 #site-logo {
@@ -63,7 +68,10 @@ body {
     padding: 1vh 1vw;
     border-radius: 5px;
     margin-left: 5vw;
-    background: linear-gradient( var(--secondary-bg-color-from), var(--secondary-bg-color-to));
+    background: linear-gradient(
+        var(--secondary-bg-color-from),
+        var(--secondary-bg-color-to)
+    );
     float: left;
 }
 
@@ -84,9 +92,12 @@ body {
     height: 75vh;
     border-radius: 10px;
     margin-left: 2%;
-    background: linear-gradient( var(--primary-bg-color-from), var(--primary-bg-color-to));
+    background: linear-gradient(
+        var(--primary-bg-color-from),
+        var(--primary-bg-color-to)
+    );
 
-/*     float: right; */
+    /*     float: right; */
 }
 
 .coffee-container {
@@ -104,7 +115,10 @@ body {
     border: 2px solid var(--primary-border-color);
     border-radius: 10px;
     margin: auto;
-    background: linear-gradient( var(--primary-bg-color-from), var(--primary-bg-color-to));
+    background: linear-gradient(
+        var(--primary-bg-color-from),
+        var(--primary-bg-color-to)
+    );
 }
 
 /* Outputs and past inputs  */
@@ -116,18 +130,22 @@ body {
     border: 2px solid black;
     border-radius: 10px;
     margin: 1vh 1vw;
-    background: linear-gradient( var(--secondary-bg-color-from), var(--secondary-bg-color-to));
+    background: linear-gradient(
+        var(--secondary-bg-color-from),
+        var(--secondary-bg-color-to)
+    );
 }
 
 .in-out-bubble {
     width: 30%;
     min-height: 5%;
-    padding: 10px;
-    padding-top: calc(10px + 0.5em);
-    border-radius: 15px;
-    margin: 10px;
+    padding: 1em;
+    border-radius: 20px;
+    margin: 5px 10px;
     clear: right;
-    text-align: center;
+    hyphens: auto;
+    overflow-wrap: break-word;
+    text-align: left;
 }
 
 .in-out-bubble:first-of-type {
@@ -135,16 +153,24 @@ body {
 }
 
 .server-sent {
-    background: linear-gradient(to top left, var(--server-bubble-color-from), var(--server-bubble-color-to));
+    background: linear-gradient(
+        to top left,
+        var(--server-bubble-color-from),
+        var(--server-bubble-color-to)
+    );
 }
 
 .user-sent {
-    background: linear-gradient(to top right, var(--user-bubble-color-from), var(--user-bubble-color-to));
+    background: linear-gradient(
+        to top right,
+        var(--user-bubble-color-from),
+        var(--user-bubble-color-to)
+    );
     float: right;
 }
 
 /* Input box */
-#input-form {
+#input-container {
     position: absolute;
     bottom: 1vh;
     width: 95%;
@@ -153,7 +179,7 @@ body {
     margin: 0 1vw;
 }
 
-#input-form input {
+#input-container input {
     /* Width and height will account for the border width and the padding */
     width: calc(100% - 6px);
     height: calc(100% - 4px);
@@ -163,10 +189,11 @@ body {
     border-radius: 10px;
     margin: 0;
     background-color: white;
+    font-size: large;
     transition: all ease-in-out 0.4s;
 }
 
-#input-form button {
+#input-container button {
     position: absolute;
     top: 2px;
     right: 2px;
@@ -175,7 +202,7 @@ body {
     border-radius: 0 8px 8px 0;
 }
 
-#input-form input:focus {
+#input-container input:focus {
     border-color: var(--secondary-border-color-active);
     outline: none;
 }
