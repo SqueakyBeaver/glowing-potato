@@ -1,0 +1,79 @@
+:root {
+    /* 
+    For quick theme toggling and so all colors are in one place
+    See: https://www.w3schools.com/css/css3_variables.asp
+
+    I'm using hsl because it tends to be easier to work with gradients
+    _-from: the darker color of the gradient
+    _-to: the lighter color of the gradient
+    */
+    --primary-bg-color-from: hsl(240, 40%, 70%);
+    --primary-bg-color-to: hsl(240, 75%, 85%);
+    --secondary-bg-color-from: hsl(214, 50%, 80%);
+    --secondary-bg-color-to: hsl(214, 75%, 90%);
+    --server-bubble-color-from: hsl(239, 30%, 70%);
+    --server-bubble-color-to: hsl(239, 75%, 85%);
+    --user-bubble-color-from: hsl(330, 30%, 70%);
+    --user-bubble-color-to: hsl(330, 75%, 85%);
+    --popup-bg-color-from: hsl(150, 100%, 75%);
+    --popup-bg-color-to: hsl(150, 100%, 91%);
+
+    /* Non-gradient colors */
+    --secondary-border-color: hsl(271.3, 96%, 9.8%);
+    --secondary-border-color-active: hsl(271.1, 77.8%, 42.4%);
+    --primary-border-color: hsl(240, 34.5%, 23.3%);
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-size: large;
+}
+
+/* Top header */
+.top-header {
+    padding: 1.5rem 0 1.75rem;
+    border-bottom: groove 2px;
+    margin: 0;
+    margin-bottom: 5vh;
+    background: linear-gradient(
+        var(--primary-bg-color-from),
+        var(--primary-bg-color-to)
+    );
+}
+
+#site-logo {
+    padding: 2rem;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: 200%;
+}
+
+.header-links {
+    display: block;
+    padding: 0;
+    margin: 0;
+    margin-right: 0.75vw;
+    clear: none;
+    float: right;
+    list-style: none;
+}
+
+.header-links > li {
+    padding: 1vh 1vw;
+    border-radius: 5px;
+    margin-left: 5vw;
+    background: linear-gradient(
+        var(--secondary-bg-color-from),
+        var(--secondary-bg-color-to)
+    );
+    float: left;
+}
+
+.top-header li a {
+    color: black;
+    text-decoration: none;
+}
+
+.top-header li:hover {
+    outline: 2px solid skyblue;
+}

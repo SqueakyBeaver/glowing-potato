@@ -1,0 +1,55 @@
+/* Popups */
+.popup-container {
+    /* position: absolute; */
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    transition: all 1s linear;
+}
+
+.background-dimmer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 70%);
+}
+
+.popup-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    display: none;
+    width: 50vw;
+    height: 50vw;
+    padding: 3em;
+    border-radius: 10px;
+    background: radial-gradient(
+        circle,
+        var(--popup-bg-color-from),
+        var(--popup-bg-color-to)
+    );
+    text-align: justify;
+    transform: translate(
+        -50%,
+        -50%
+    ); /* move the popup left and up by half its width and height so it will be centered */
+}
+
+.popup-content img {
+    max-width: 50%;
+    max-height: 50%;
+}
+
+.popup-content h1 {
+    text-align: center;
+}
+
+.popup-close-button {
+    position: relative;
+    left: 50%;
+    width: fit-content;
+    transform: translate(-50%, 0);
+}
