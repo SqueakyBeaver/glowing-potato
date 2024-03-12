@@ -58,11 +58,14 @@ class PopupContainer {
 
         PopupContainer.numPopups++;
 
-        let dimmers = document.getElementsByClassName("background-dimmer");
-        dimmers[dimmers.length - 1].onclick = PopupContainer.closePopup;
+        // So that way people clicking buttons really fast don't close popups immediately
+        setTimeout(() => {
+            let dimmers = document.getElementsByClassName("background-dimmer");
+            dimmers[dimmers.length - 1].onclick = PopupContainer.closePopup;
 
-        let closeButtons = document.getElementsByClassName("popup-close-button");
-        closeButtons[closeButtons.length - 1].onclick = PopupContainer.closePopup;
+            let closeButtons = document.getElementsByClassName("popup-close-button");
+            closeButtons[closeButtons.length - 1].onclick = PopupContainer.closePopup;
+        }, 500);
     }
 }
 

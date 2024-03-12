@@ -23,10 +23,10 @@ function afterCoffeeClick() {
         let coffeeImg = document.createElement("img");
         coffeeImg.src = "images/coffee.png";
         coffeeImg.alt = "coffe cup";
-        coffeeImg.style.position = "absolute";
-        coffeeImg.style.top = "50%";
-        coffeeImg.style.left = "50%";
-        coffeeImg.style.transform = "translate(-50%, -50%)";
+        // coffeeImg.style.position = "absolute";
+        // coffeeImg.style.top = "50%";
+        // coffeeImg.style.left = "50%";
+        // coffeeImg.style.transform = "translate(-50%, -50%)";
 
         let coffeeDescription = document.createElement("h1");
         coffeeDescription.textContent = `Enjoy coffee number ${clickedCount - currentCoffeeCounter++}!`;
