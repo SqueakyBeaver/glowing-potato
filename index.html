@@ -8,24 +8,45 @@
         <link href="index.css" rel="stylesheet" />
         <!-- Since this is just a class declaration,
             there is no need to put this in the body -->
-        <script  src="js/PopupContainer.js"></script>
+        <script src="js/PopupContainer.js"></script>
     </head>
     <body>
-        <!-- When popups happen, this will make everything else dim and unclickable -->
-        <!-- Clicking on it will close the popup (when I finish implementing it) -->
-        <div class="popup-container">
-            <div class="background-dimmer"></div>
-            <div class="popup">
-                <p>Hello your mom is very cool wink wonk</p>
-            </div>
-        </div>
-
         <!-- Top header -->
         <header class="top-header">
             <a id="site-logo">Animal Facts</a>
             <ul class="header-links">
-                <li><a href="#">Home</a></li>
-                <li id="about-link">About</li>
+                <li class="popup-origin">
+                    About the creator
+                    <div class="popup-content">
+                        <p>
+                            I am a college student (more to come later, I can't
+                            think of anything else right now)
+                        </p>
+                        <ul id="about-me">
+                            <li>
+                                Name: Sylva Ford
+                            </li>
+                            <li>
+                                Pronouns: She/Her and They/Them interchangeably
+                            </li>
+                            <li>
+                                Major: Computer Science
+                            </li>
+                            <li>
+                                Programming languages I know: C/C++, Python,
+                                Java, HTML, JavaScript/TypeScript, CSS, Golang
+                            </li>
+                            <li>
+                                Minor: Music (my main instrument is the
+                                clarinet)
+                            </li>
+                            <li>
+                                More to come when I can think of it (hopefully)
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="popup-origin">About this project</li>
                 <li><a href="#">Placeholder</a></li>
             </ul>
         </header>
@@ -33,7 +54,8 @@
         <!-- Sidebar thingy on the right -->
         <div class="right-sidebar">
             <!-- This is just a button to do something funny -->
-            <div class="coffee-container">
+            <div id="coffee-container">
+                <img src="images/coffee.png" alt="cofee cup">
                 <!-- TODO: Remove onclick here -->
                 <button
                     onclick="coffeeClicked()"
@@ -43,11 +65,12 @@
                     style="min-width: 75%">
                     Click for coffee
                 </button>
+                <p>Press it as many times as you can for a lot of coffees!</p>
             </div>
         </div>
         <!-- The  allows for using es6 import syntax,
             which I like more than require() -->
-        <script src="js/coffee.js" ></script>
+        <script src="js/coffee.js"></script>
 
         <!-- Main section of content -->
         <div id="main-container">
@@ -66,6 +89,6 @@
             </div>
         </div>
         <script src="js/input.js"></script>
-        <script src="js/popups.js" ></script>
+        <script src="js/popups.js"></script>
     </body>
 </html>

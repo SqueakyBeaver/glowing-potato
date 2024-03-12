@@ -1,34 +1,47 @@
-// import { PopupContainer } from './PopupContainer.js';
-
 // Functions for when the "click for coffee" button is clicked
 
 let clickedCount = 0;
+let currentCoffeeCounter = 1;
 
-// Show all the coffee PNGs after 3 seconds
-document.getElementById("coffee-button").onclick = function coffeeClicked() {
+// Show all the coffee popups after 3 seconds
+document.getElementById("coffee-button").onclick = () => {
     if (clickedCount === 0) {
         setTimeout(afterCoffeeClick, 3000);
     }
     clickedCount++;
 };
 
-// TODO: Polish the positioning bit, cleanup
 function afterCoffeeClick() {
-    const x = document.getElementById("coffeeButton");
+    const x = document.getElementById("coffee-button");
     x.disabled = true;
     x.textContent = `Enjoy your ${clickedCount} cofees`;
 
     for (let i = 0; i < clickedCount; ++i) {
-        let coffeePopup = new PopupContainer("<img src=\"images/coffee.png\"" + "alt=\"coffe cup\" height=\"150px\" />");
+        let popupContent = document.createElement("div");
+        popupContent.classList.add("popup-content");
 
-        setTimeout(() => coffeePopup.showPopup(), 3000);
+        let coffeeImg = document.createElement("img");
+        coffeeImg.src = "images/coffee.png";
+        coffeeImg.alt = "coffe cup";
+        coffeeImg.style.position = "absolute";
+        coffeeImg.style.top = "50%";
+        coffeeImg.style.left = "50%";
+        coffeeImg.style.transform = "translate(-50%, -50%)";
+
+        let coffeeDescription = document.createElement("h1");
+        coffeeDescription.textContent = `Enjoy your coffee number ${currentCoffeeCounter++}!`;
+
+        popupContent.append(coffeeDescription, coffeeImg);
+        let coffeePopup = new PopupContainer(popupContent);
+
+        coffeePopup.showPopup();
+
+        clickedCount = 0;
+        // Reenable the coffee button after 3 seconds
+        setTimeout((element) => {
+            element.textContent = "Click for coffee";
+            element.disabled = false;
+            currentCoffeeCounter = 0;
+        }, 3000, x);
     }
-
-    clickedCount = 0;
-    // Reenable the coffee button after 3 seconds
-    setTimeout((element) => {
-        element.textContent = "Click for coffee";
-        element.disabled = false;
-    }, 3000, x);
-
 }
