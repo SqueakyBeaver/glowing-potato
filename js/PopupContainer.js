@@ -3,7 +3,7 @@
 // is very similar to the way typescript does it
 class PopupContainer {
     static topZIndex = 100;
-    static numPopups = 0;
+    static numPopups = 1;
     /**
      * @param {HTMLElement} content The element that will be the content of the popup 
      */
@@ -47,7 +47,7 @@ class PopupContainer {
 
 
         // This is so the background doesn't become just black if there are multiple popups
-        if (PopupContainer.numPopups >= 1) {
+        if (PopupContainer.numPopups > 1) {
             this.popupDimmer.style.backgroundColor = "transparent";
         }
 

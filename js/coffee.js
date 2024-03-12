@@ -1,10 +1,10 @@
 // Functions for when the "click for coffee" button is clicked
 
 let clickedCount = 0;
-let currentCoffeeCounter = 1;
+let currentCoffeeCounter = 0;
 
 // Show all the coffee popups after 3 seconds
-document.getElementById("coffee-button").onclick = () => {
+document.getElementById("coffee-button").onclick = function coffeeClicked() {
     if (clickedCount === 0) {
         setTimeout(afterCoffeeClick, 3000);
     }
@@ -29,19 +29,19 @@ function afterCoffeeClick() {
         coffeeImg.style.transform = "translate(-50%, -50%)";
 
         let coffeeDescription = document.createElement("h1");
-        coffeeDescription.textContent = `Enjoy your coffee number ${currentCoffeeCounter++}!`;
+        coffeeDescription.textContent = `Enjoy coffee number ${clickedCount - currentCoffeeCounter++}!`;
 
         popupContent.append(coffeeDescription, coffeeImg);
         let coffeePopup = new PopupContainer(popupContent);
 
         coffeePopup.showPopup();
-
-        clickedCount = 0;
-        // Reenable the coffee button after 3 seconds
-        setTimeout((element) => {
-            element.textContent = "Click for coffee";
-            element.disabled = false;
-            currentCoffeeCounter = 0;
-        }, 3000, x);
     }
+
+    clickedCount = 0;
+    // Reenable the coffee button after 3 seconds
+    setTimeout((element) => {
+        element.textContent = "Click for coffee";
+        element.disabled = false;
+        currentCoffeeCounter = 0;
+    }, 3000, x);
 }

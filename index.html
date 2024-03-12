@@ -10,7 +10,6 @@
         <link href="css/mainContent.css" rel="stylesheet" />
         <link href="css/popups.css" rel="stylesheet" />
         <link href="css/rightSidebar.css" rel="stylesheet" />
-        =
         <!-- Since this is just a class declaration,
             there is no need to put this in the body -->
         <script src="js/PopupContainer.js"></script>
@@ -47,8 +46,43 @@
                         </ul>
                     </div>
                 </li>
-                <li class="popup-origin">About this project</li>
-                <li><a href="#">Placeholder</a></li>
+                <li class="popup-origin">
+                    About this project
+                    <div class="popup-content">
+                        <p>
+                            This is a project for my intro to web development
+                            class. It isn't the prettiest since I'm kind of
+                            really bad at color design. The source is available
+                            <!-- target="_blank" opens it in a new tab -->
+                            <a
+                                href="https://github.com/SqueakyBeaver/glowing-potato"
+                                target="_blank">
+                                here
+                            </a>
+                        </p>
+                        <p>
+                            P.S. you can type "clear" into the input box.
+                        </p>
+                    </div>
+                </li>
+
+                <li class="popup-origin">
+                    Future plans
+                    <div class="popup-content">
+                        <ul>
+                            <li>
+                                Make everything prettier (I suck at colors and
+                                this will take me a long time)
+                            </li>
+                            <li>Actually implement guessing the animal</li>
+                            <li>Add a few more things to sidebars</li>
+                            <li>
+                                Make clicking the bubbles in the main content
+                                show a sort of popup
+                            </li>
+                        </ul>
+                    </div>
+                </li>
             </ul>
         </header>
 
@@ -77,8 +111,10 @@
         <div id="main-container">
             <!-- Displays what was typed or what was sent by the server (not implemented at this point) -->
             <div id="inputs-outputs-container">
-                <p class="server-sent in-out-bubble">This is a test</p>
-                <p class="user-sent in-out-bubble">This is a test</p>
+                <div class="server-sent in-out-bubble">
+                    <img src="images/Giraffe.jpg" alt="picture of an animal with a long neck">
+                </div>
+                <p class="server-sent in-out-bubble">Guess what animal this is to see it do something funny.</p>
             </div>
             <!-- Input -->
             <div id="input-container">
