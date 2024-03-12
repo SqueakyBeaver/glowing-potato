@@ -1,3 +1,5 @@
+// File containing functions pertaining to the main input
+
 const submitButton = document.getElementById("submit-main-input");
 const mainInput = document.getElementById("main-input");
 

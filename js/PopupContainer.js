@@ -1,6 +1,4 @@
 /** class defining a popup container */
-// Note: I could be wrong, but I am 90% sure that the import/export for es modules
-// is very similar to the way typescript does it
 class PopupContainer {
     static topZIndex = 100;
     static numPopups = 1;
