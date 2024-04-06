@@ -16,12 +16,31 @@
             there is no need to put this in the body -->
         <script src="js/PopupContainer.js"></script>
 
-        <?php
-        require('php/guesses.php');
-        require('php/InOutBubble.php');
-        ?>
+        
     </head>
     <body>
+    <?php
+        require('php/guesses.php');
+        require('php/InOutBubble.php');
+        if (!isset($bubbles)) {
+            // $bubbles = &$_SESSION["bubbles"];
+            $_
+            $bubbles = [];
+        }
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (!empty($_POST["guess"])) {
+                // Make sure nothing will be funky
+                $cleanedInput = htmlspecialchars(stripslashes(trim($_POST["guess"])));
+
+                array_push($bubbles, new InOutBubble("user-sent", $_POST["guess"]));
+
+                if (strtolower($_POST["guess"]) === "clear") {
+                    $bubbles = [];
+                }
+            }
+        }
+        ?>
         <!-- Top header -->
         <header class="top-header">
             <a id="site-logo">Animal Facts</a>
@@ -118,15 +137,28 @@
                     <img src="images/Giraffe.jpg" alt="picture of an animal with a long neck">
                 </div>
                 <p class="server-sent in-out-bubble">Guess what animal this is to see it do something funny.</p>
+                <?php
+                if (isset($bubbles)) {
+                    foreach ($bubbles as $bubble) {
+                ?>
+                    <!-- TODO: Maybe image handling (if I decide to make things send images for hints) -->
+                    <p class="<?= $bubble->getSender() ?> in-out-bubble"><?= htmlspecialchars($bubble->getContent()) ?></p>
+                <?php
+                    print_r($bubbles);
+                    }
+                }
+                ?>
             </div>
             <!-- Input -->
-            <form id="input-form" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
+            <form id="input-form" method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
                 <input
                     id="main-input"
                     type="text"
-                    placeholder="Enter your guess" />
-                <button id="submit-main-input">Submit</button>
-            </form>
+                    placeholder="Enter your guess"
+                    name="guess"
+                     />
+                <button id="submit-main-input" name="submit">Submit</button>
+                </form>
         </div>
         <script src="js/guesses.js"></script>
         <script>
@@ -136,7 +168,7 @@
             setCorrectGuess('<?= $CHOSEN_ANIMAL ?>');
             console.log('<?= $CHOSEN_ANIMAL ?>');
         </script>
-        <script src="js/input.js"></script>
+        <!-- <script src="js/input.js"></script> -->
         <script src="js/popups.js"></script>
         
     </body>

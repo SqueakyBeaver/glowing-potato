@@ -4,7 +4,7 @@
 $POSSIBLE_GUESSES = explode("\n", file_get_contents("./animals.txt"));
 
 // Won't explode so I can pass easily to a JavaScript function
-$HINTS =file_get_contents("./hints.txt"); 
+$HINTS = file_get_contents("./hints.txt");
 
 // So glad php has a builtin function to get a random array key
 $CHOSEN_ANIMAL = $POSSIBLE_GUESSES[array_rand($POSSIBLE_GUESSES, 1)];
