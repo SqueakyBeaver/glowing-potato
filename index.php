@@ -19,6 +19,35 @@
         
     </head>
     <body>
+
+        <?php 
+        function cleanText($s) {
+            return htmlspecialchars(stripslashes(trim($s)));
+        }
+
+        require('php/DB.php');
+
+        $DATABASE = new DB();
+        // $DATABASE->createEntry("Mongoose", "cool animal oh yeah");
+
+        $animalErr = $factErr = $imageErr = "";
+        
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (empty($_POST["animal"])) {
+                $Err = "Animal is required";
+            }
+            if (empty($_POST["fact"])) {
+                $Err = "Fact is required";
+            }
+            if (!empty($_FILES["animal-image"])) {
+                if (getimagesize($_FILES["animal-image"])) {
+
+                }
+            }
+
+          }
+        ?>
+
         <!-- Top header -->
         <header class="top-header">
             <a id="site-logo">Animal Facts</a>
@@ -118,6 +147,7 @@
                     type="text"
                     name="animal"
                     >
+                    <span class="error">* <?= $genderErr ?></span>
                 <br><br>
                 <label>Fact:&nbsp;&nbsp;</label><textarea
                     id="fact-input"
@@ -126,14 +156,16 @@
                     cols="30"
                     name="fact"
                     ></textarea>
+                    <span class="error">* <?= $genderErr ?></span>
                     <br><br>
                 <label>Image:&nbsp;&nbsp;</label><input
                     id="image-input"
                     class="input"
                     type="file"
                     accept="image/*"
-                    name="image"
+                    name="animal-image"
                     >
+                    <span class="error">* <?= $imageErr ?></span>
                     <br><br>
                 <button id="submit-main-input" name="submit">Submit</button>
                 </form>

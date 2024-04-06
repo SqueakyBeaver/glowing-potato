@@ -72,6 +72,10 @@
   float: right;
 }
 
+.error {
+    color:red;
+}
+
 /* Input form */
 #input-form {
   padding: 5px;
@@ -80,6 +84,7 @@
 }
 
 #input-form .input {
+  display: inline;
   max-width: 80%;
 }
 
