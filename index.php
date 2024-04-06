@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Animal Facts!</title>
 
         <!-- CSS rules are separated into files because otherwise I would have
             many, many lines of CSS, and that gets very overwhelming -->
-        <link href="css/index.css" rel="stylesheet" />
-        <link href="css/mainContent.css" rel="stylesheet" />
-        <link href="css/popups.css" rel="stylesheet" />
-        <link href="css/rightSidebar.css" rel="stylesheet" />
+        <link href="css/index.css" rel="stylesheet">
+        <link href="css/mainContent.css" rel="stylesheet">
+        <link href="css/popups.css" rel="stylesheet">
+        <link href="css/rightSidebar.css" rel="stylesheet">
 
         <!-- Since this is just a class declaration,
             there is no need to put this in the body -->
@@ -19,28 +19,6 @@
         
     </head>
     <body>
-    <?php
-        require('php/guesses.php');
-        require('php/InOutBubble.php');
-        if (!isset($bubbles)) {
-            // $bubbles = &$_SESSION["bubbles"];
-            $_
-            $bubbles = [];
-        }
-
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (!empty($_POST["guess"])) {
-                // Make sure nothing will be funky
-                $cleanedInput = htmlspecialchars(stripslashes(trim($_POST["guess"])));
-
-                array_push($bubbles, new InOutBubble("user-sent", $_POST["guess"]));
-
-                if (strtolower($_POST["guess"]) === "clear") {
-                    $bubbles = [];
-                }
-            }
-        }
-        ?>
         <!-- Top header -->
         <header class="top-header">
             <a id="site-logo">Animal Facts</a>
@@ -111,12 +89,13 @@
                 </li>
             </ul>
         </header>
+        <!-- TODO: "fact of the visit" sidebar (once we setup mySQL db) -->
 
         <!-- Sidebar thingy on the right -->
         <div class="right-sidebar">
             <!-- This is just a button to do something funny -->
             <div id="coffee-container">
-                <img src="images/coffee.png" alt="cofee cup" />
+                <img src="images/coffee.png" alt="cofee cup">
                 <button
                     id="coffee-button"
                     name="coffee-button"
@@ -131,43 +110,34 @@
 
         <!-- Main section of content -->
         <div id="main-container">
-            <!-- Displays what was typed or what was sent by the server -->
-            <div id="inputs-outputs-container">
-                <div class="server-sent in-out-bubble">
-                    <img src="images/Giraffe.jpg" alt="picture of an animal with a long neck">
-                </div>
-                <p class="server-sent in-out-bubble">Guess what animal this is to see it do something funny.</p>
-                <?php
-                if (isset($bubbles)) {
-                    foreach ($bubbles as $bubble) {
-                ?>
-                    <!-- TODO: Maybe image handling (if I decide to make things send images for hints) -->
-                    <p class="<?= $bubble->getSender() ?> in-out-bubble"><?= htmlspecialchars($bubble->getContent()) ?></p>
-                <?php
-                    print_r($bubbles);
-                    }
-                }
-                ?>
-            </div>
             <!-- Input -->
             <form id="input-form" method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
-                <input
-                    id="main-input"
+                <label>Animal:&nbsp;&nbsp;</label><input
+                    id="animal-input"
+                    class="input"
                     type="text"
-                    placeholder="Enter your guess"
-                    name="guess"
-                     />
+                    name="animal"
+                    >
+                <br><br>
+                <label>Fact:&nbsp;&nbsp;</label><textarea
+                    id="fact-input"
+                    class="input"
+                    rows="5"
+                    cols="30"
+                    name="fact"
+                    ></textarea>
+                    <br><br>
+                <label>Image:&nbsp;&nbsp;</label><input
+                    id="image-input"
+                    class="input"
+                    type="file"
+                    accept="image/*"
+                    name="image"
+                    >
+                    <br><br>
                 <button id="submit-main-input" name="submit">Submit</button>
                 </form>
         </div>
-        <script src="js/guesses.js"></script>
-        <script>
-            <?php
-                // global $CHOSEN_ANIMAL;
-            ?>
-            setCorrectGuess('<?= $CHOSEN_ANIMAL ?>');
-            console.log('<?= $CHOSEN_ANIMAL ?>');
-        </script>
         <!-- <script src="js/input.js"></script> -->
         <script src="js/popups.js"></script>
         
