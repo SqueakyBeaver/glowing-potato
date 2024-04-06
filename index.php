@@ -21,27 +21,37 @@
     <body>
 
         <?php 
-        function cleanText($s) {
-            return htmlspecialchars(stripslashes(trim($s)));
-        }
-
         require('php/DB.php');
+        require('php/utils.php');
+
 
         $DATABASE = new DB();
-        // $DATABASE->createEntry("Mongoose", "cool animal oh yeah");
+        $DATABASE->getNextID();
+        $DATABASE->createEntry("Mongoose", "cool animal oh yeah");
 
         $animalErr = $factErr = $imageErr = "";
+        $animal = $fact = $imagePath = "";
         
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($_POST["animal"])) {
                 $Err = "Animal is required";
+            } else {
+                $animal = cleanText($_POST["animal"]);
+                // $imagePath = $DATABASE->getConn()->
             }
+
             if (empty($_POST["fact"])) {
                 $Err = "Fact is required";
+            } else {
+                $fact = cleanText($_POST["fact"]);
             }
-            if (!empty($_FILES["animal-image"])) {
-                if (getimagesize($_FILES["animal-image"])) {
 
+            print_r($_POST["animal-image"]);
+            if (!empty($_POST["animal-image"])) {
+                if (validateImage()) {
+                    if (!move_uploaded_file($_FILES["animal-image"]["tmp_name"], "images/submissions/$pathName")) {
+                        $imageErr = "Image upload failed. Try again.";
+                    }
                 }
             }
 
