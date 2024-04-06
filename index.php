@@ -15,6 +15,11 @@
         <!-- Since this is just a class declaration,
             there is no need to put this in the body -->
         <script src="js/PopupContainer.js"></script>
+
+        <?php
+        require('php/guesses.php');
+        require('php/InOutBubble.php');
+        ?>
     </head>
     <body>
         <!-- Top header -->
@@ -115,15 +120,24 @@
                 <p class="server-sent in-out-bubble">Guess what animal this is to see it do something funny.</p>
             </div>
             <!-- Input -->
-            <div id="input-container">
+            <form id="input-form" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
                 <input
                     id="main-input"
                     type="text"
                     placeholder="Enter your guess" />
                 <button id="submit-main-input">Submit</button>
-            </div>
+            </form>
         </div>
+        <script src="js/guesses.js"></script>
+        <script>
+            <?php
+                // global $CHOSEN_ANIMAL;
+            ?>
+            setCorrectGuess('<?= $CHOSEN_ANIMAL ?>');
+            console.log('<?= $CHOSEN_ANIMAL ?>');
+        </script>
         <script src="js/input.js"></script>
         <script src="js/popups.js"></script>
+        
     </body>
 </html>
