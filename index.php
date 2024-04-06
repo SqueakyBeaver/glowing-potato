@@ -21,43 +21,21 @@
     <body>
 
         <?php 
+        $genConfig = parse_ini_file("config.ini", true)["database"];
+        if ($genConfig["debug"] === "true") {
+            // Display errors better and display them in the browser
+            ini_set('display_errors', 1);
+            ini_set('log_errors',1);
+            error_reporting(E_ALL); 
+        }
+        
         require('php/DB.php');
         require('php/utils.php');
 
 
         $DATABASE = new DB();
-        $DATABASE->getNextID();
-        // $DATABASE->createEntry("Mongoose", "cool animal oh yeah");
 
-        $animalErr = $factErr = $imageErr = "";
-        $animal = $fact = $imagePath = "";
-        
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            var_dump($_FILES);
-            echo "<br>" . $_FILES["animal-image"]["tmp_name"];
-            if (empty($_POST["animal"])) {
-                $Err = "Animal is required";
-            } else {
-                $animal = cleanText($_POST["animal"]);
-                $id = $DATABASE->getNextID();
-                $imagePath = "images/submissions/$animal$id";
-            }
-
-            if (empty($_POST["fact"])) {
-                $Err = "Fact is required";
-            } else {
-                $fact = cleanText($_POST["fact"]);
-            }
-            
-            if (validateImage()) {
-                    echo "<br>good<br>";
-                    $imagePath = $imagePath . $_FILES["animal-image"]["extension"];
-
-                    // if (!move_uploaded_file($_FILES["animal-image"]["tmp_name"], "images/submissions/$imagePath")) {
-                    //     $imageErr = "Image upload failed. Try again.";
-                    // }
-                }
-            }
+        require('php/upload.php');
         ?>
 
         <!-- Top header -->
@@ -152,7 +130,7 @@
         <!-- Main section of content -->
         <div id="main-container">
             <!-- Input -->
-            <form id="input-form" method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]) ?>" enctype="multipart/form-data">
+            <form id="input-form" method="post" enctype="multipart/form-data" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
                 <label>Animal:&nbsp;&nbsp;</label><input
                     id="animal-input"
                     class="input"

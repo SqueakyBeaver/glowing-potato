@@ -3,3 +3,6 @@ dbName = "urMomsHouse"
 username = "root"
 password = ""
 hostname = "localhost"
+
+[general]
+debug = "false"
