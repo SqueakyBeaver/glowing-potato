@@ -1,0 +1,5 @@
+[database]
+dbName = "urMomsHouse"
+username = "root"
+password = ""
+hostname = "localhost"
