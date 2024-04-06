@@ -19,7 +19,6 @@
         
     </head>
     <body>
-
         <?php 
         $genConfig = parse_ini_file("config.ini", true)["database"];
         if ($genConfig["debug"] === "true") {
@@ -35,79 +34,16 @@
 
         $DATABASE = new DB();
 
-        require('php/upload.php');
+        $animalErr = $factErr = $imageErr = "";
+        $animal = $fact = $imagePath = "";
+
+
+        // require('php/upload.php');
         ?>
 
         <!-- Top header -->
-        <header class="top-header">
-            <a id="site-logo">Animal Facts</a>
-            <ul class="header-links">
-                <li class="popup-origin">
-                    About the creator
-                    <div class="popup-content">
-                        <p>
-                            I am a college student (more to come later, I can't
-                            think of anything else right now)
-                        </p>
-                        <ul id="about-me">
-                            <li>Name: Sylva Ford</li>
-                            <li>
-                                Pronouns: She/Her and They/Them interchangeably
-                            </li>
-                            <li>Major: Computer Science</li>
-                            <li>
-                                Programming languages I know: C/C++, Python,
-                                Java, HTML, JavaScript/TypeScript, CSS, Golang
-                            </li>
-                            <li>
-                                Minor: Music (my main instrument is the
-                                clarinet)
-                            </li>
-                            <li>
-                                More to come when I can think of it (hopefully)
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="popup-origin">
-                    About this project
-                    <div class="popup-content">
-                        <p>
-                            This is a project for my intro to web development
-                            class. It isn't the prettiest since I'm kind of
-                            really bad at color design. The source is available
-                            <!-- target="_blank" opens it in a new tab -->
-                            <a
-                                href="https://github.com/SqueakyBeaver/glowing-potato"
-                                target="_blank">
-                                here
-                            </a>
-                        </p>
-                        <p>
-                            P.S. you can type "clear" into the input box.
-                        </p>
-                    </div>
-                </li>
+        <?php require('php/templates/header.php'); ?>
 
-                <li class="popup-origin">
-                    Future plans
-                    <div class="popup-content">
-                        <ul>
-                            <li>
-                                Make everything prettier (I suck at colors and
-                                this will take me a long time)
-                            </li>
-                            <li>Actually implement guessing the animal</li>
-                            <li>Add a few more things to sidebars</li>
-                            <li>
-                                Make clicking the bubbles in the main content
-                                show a sort of popup
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </header>
         <!-- TODO: "fact of the visit" sidebar (once we setup mySQL db) -->
 
         <!-- Sidebar thingy on the right -->
@@ -130,12 +66,14 @@
         <!-- Main section of content -->
         <div id="main-container">
             <!-- Input -->
-            <form id="input-form" method="post" enctype="multipart/form-data" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
+            <form id="input-form" method="post" enctype="multipart/form-data" action="pages/upload.php">
+                <p class="error">* is required</p>
                 <label>Animal:&nbsp;&nbsp;</label><input
                     id="animal-input"
                     class="input"
                     type="text"
                     name="animal"
+                    value="<?= $animal ?>"
                     >
                     <span class="error">* <?= $animalErr ?></span>
                 <br><br>
@@ -145,6 +83,7 @@
                     rows="5"
                     cols="30"
                     name="fact"
+                    value="<?= $fact ?>"
                     ></textarea>
                     <span class="error">* <?= $factErr ?></span>
                     <br><br>
@@ -154,6 +93,7 @@
                     type="file"
                     accept="image/*"
                     name="animal-image"
+                    value="<?= $_FILES["animal-image"] ?>"
                     >
                     <span class="error"><?= $imageErr ?></span>
                     <br><br>
