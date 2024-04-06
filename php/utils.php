@@ -15,6 +15,5 @@ function validateImage() {
         return false;
     }
 
-    
-
+    return true;
 }

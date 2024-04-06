@@ -27,17 +27,20 @@
 
         $DATABASE = new DB();
         $DATABASE->getNextID();
-        $DATABASE->createEntry("Mongoose", "cool animal oh yeah");
+        // $DATABASE->createEntry("Mongoose", "cool animal oh yeah");
 
         $animalErr = $factErr = $imageErr = "";
         $animal = $fact = $imagePath = "";
         
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            var_dump($_FILES);
+            echo "<br>" . $_FILES["animal-image"]["tmp_name"];
             if (empty($_POST["animal"])) {
                 $Err = "Animal is required";
             } else {
                 $animal = cleanText($_POST["animal"]);
-                // $imagePath = $DATABASE->getConn()->
+                $id = $DATABASE->getNextID();
+                $imagePath = "images/submissions/$animal$id";
             }
 
             if (empty($_POST["fact"])) {
@@ -45,17 +48,16 @@
             } else {
                 $fact = cleanText($_POST["fact"]);
             }
+            
+            if (validateImage()) {
+                    echo "<br>good<br>";
+                    $imagePath = $imagePath . $_FILES["animal-image"]["extension"];
 
-            print_r($_POST["animal-image"]);
-            if (!empty($_POST["animal-image"])) {
-                if (validateImage()) {
-                    if (!move_uploaded_file($_FILES["animal-image"]["tmp_name"], "images/submissions/$pathName")) {
-                        $imageErr = "Image upload failed. Try again.";
-                    }
+                    // if (!move_uploaded_file($_FILES["animal-image"]["tmp_name"], "images/submissions/$imagePath")) {
+                    //     $imageErr = "Image upload failed. Try again.";
+                    // }
                 }
             }
-
-          }
         ?>
 
         <!-- Top header -->
@@ -150,14 +152,14 @@
         <!-- Main section of content -->
         <div id="main-container">
             <!-- Input -->
-            <form id="input-form" method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
+            <form id="input-form" method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]) ?>" enctype="multipart/form-data">
                 <label>Animal:&nbsp;&nbsp;</label><input
                     id="animal-input"
                     class="input"
                     type="text"
                     name="animal"
                     >
-                    <span class="error">* <?= $genderErr ?></span>
+                    <span class="error">* <?= $animalErr ?></span>
                 <br><br>
                 <label>Fact:&nbsp;&nbsp;</label><textarea
                     id="fact-input"
@@ -166,7 +168,7 @@
                     cols="30"
                     name="fact"
                     ></textarea>
-                    <span class="error">* <?= $genderErr ?></span>
+                    <span class="error">* <?= $factErr ?></span>
                     <br><br>
                 <label>Image:&nbsp;&nbsp;</label><input
                     id="image-input"
@@ -175,7 +177,7 @@
                     accept="image/*"
                     name="animal-image"
                     >
-                    <span class="error">* <?= $imageErr ?></span>
+                    <span class="error"><?= $imageErr ?></span>
                     <br><br>
                 <button id="submit-main-input" name="submit">Submit</button>
                 </form>

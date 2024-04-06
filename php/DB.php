@@ -7,7 +7,7 @@ class DB {
     public function __construct() {
         $dbConfig = parse_ini_file("config.ini", true)["database"];
         $hostname = $dbConfig["hostname"];
-        $user = $dbConfig["user"];
+        $user = $dbConfig["username"];
         $password = $dbConfig["password"];
         $dbName = $dbConfig["dbName"];
         try {
@@ -19,7 +19,7 @@ class DB {
 
             // Check if the database already exists
             // (if we don't do this, there will be an error when we try to create a database)
-            $statement = $this->conn->query("SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = $dbName");
+            $statement = $this->conn->query("SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '$dbName'");
             if (!(bool) $statement->fetchColumn()) {
                 // Create the database if it doesn't already exist
                 $sql = "CREATE DATABASE $dbName";
