@@ -25,7 +25,6 @@
             ini_set('log_errors', 1);
             error_reporting(E_ALL);
         }
-        echo 5;
 
         require('../php/DB.php');
         require('../php/utils.php');
@@ -35,8 +34,6 @@
         }
 
         foreach ($DATABASE->getEntries() as $entry) {
-            var_dump($entry);
-            echo "<br><br>";
         ?>
             <div class="entry-card">
                 <?php
@@ -46,13 +43,13 @@
                 <?php
                 }
                 ?>
-                    <p class="animal"><?= $entry["animal"] ?></p>
-                    <p class="fact"><?= $entry["fact"] ?></p>
-                    <p class="timestamp">Created at <?= $entry["time"] ?></p>
-                <?php
-                }
-                ?>
+                <p class="animal"><?= htmlspecialchars($entry["animal"]) ?></p>
+                <p class="fact"><?= htmlspecialchars($entry["fact"]) ?></p>
+                <p class="timestamp">Created at <?= $entry["entry_time"] ?></p>
             </div>
+        <?php
+        }
+        ?>
     </div>
 </body>
 

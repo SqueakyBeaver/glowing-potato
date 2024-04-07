@@ -7,8 +7,8 @@ class DB {
     // Since this file will be require()'d in different subfolders,
     // We need to pass the path to config.ini because it could be
     // "../config.ini" or "config.ini"
-    public function __construct($configPath) {
-        $dbConfig = parse_ini_file($configPath, true)["database"];
+    public function __construct() {
+        $dbConfig = parse_ini_file(__DIR__ . "/../config.ini", true)["database"];
         $hostname = $dbConfig["hostname"];
         $user = $dbConfig["username"];
         $password = $dbConfig["password"];

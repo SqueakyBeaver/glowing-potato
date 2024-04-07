@@ -1,0 +1,25 @@
+:root {
+    /* 
+    For quick theme toggling and so all colors are in one place
+    See: https://www.w3schools.com/css/css3_variables.asp
+
+    I'm using hsl because it tends to be easier to work with gradients
+    _-from: the darker color of the gradient
+    _-to: the lighter color of the gradient
+    */
+    --primary-bg-color-from: hsl(240, 40%, 70%);
+    --primary-bg-color-to: hsl(240, 75%, 85%);
+    --secondary-bg-color-from: hsl(214, 50%, 80%);
+    --secondary-bg-color-to: hsl(214, 75%, 90%);
+    --server-bubble-color-from: hsl(239, 30%, 70%);
+    --server-bubble-color-to: hsl(239, 75%, 85%);
+    --user-bubble-color-from: hsl(330, 30%, 70%);
+    --user-bubble-color-to: hsl(330, 75%, 85%);
+    --popup-bg-color-from: hsl(150, 100%, 75%);
+    --popup-bg-color-to: hsl(150, 100%, 91%);
+
+    /* Non-gradient colors */
+    --secondary-border-color: hsl(271.3, 96%, 9.8%);
+    --secondary-border-color-active: hsl(271.1, 77.8%, 42.4%);
+    --primary-border-color: hsl(240, 34.5%, 23.3%);
+}
