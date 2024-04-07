@@ -33,10 +33,9 @@
         var(--popup-bg-color-to)
     );
     text-align: justify;
-    transform: translate(
-        -50%,
-        -50%
-    ); /* move the popup left and up by half its width and height so it will be centered */
+
+    /* move the popup left and up by half its width and height so it will be centered */
+    transform: translate(-50%, -50%);
 }
 
 .popup-content img {

@@ -2,10 +2,16 @@
 
 .entry-card {
     width: 30%;
+    padding: 1rem;
     border: solid 2px black;
     border-radius: 10px;
     margin: auto;
     margin-top: 1rem;
-    margin-bottom: 1rem;    
+    margin-bottom: 1rem;
+    background: linear-gradient(
+        to top,
+        var(--secondary-bg-color-from),
+        var(--secondary-bg-color-to)
+    );
     box-shadow: 10px 5px 2px 2px darkgrey;
 }
