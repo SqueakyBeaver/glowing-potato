@@ -26,6 +26,10 @@
 
     require('../php/DB.php');
     require('../php/utils.php');
+    
+    if (!isset($DATABASE)) {
+        $DATABASE = new DB("../config.ini");
+    }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $redirect = false;
@@ -36,7 +40,7 @@
             $redirect = true;
         } else {
             $animal = cleanText($_POST["animal"]);
-            $id = $DATABASE->getNextID();
+        $id = $DATABASE->getNextID(); 
             $imagePath = "../images/submissions/" . $animal . $id;
         }
 
@@ -60,6 +64,12 @@
         if ($redirect) {
             ?>
             <p class="rejected">Looks like you made a wrong input. Please <a href="../index.php">go back to the home page</a></p>
+            <?php
+        } else {
+            $DATABASE->createEntry($animal, $fact, $imagePath);
+            ?>
+            <p class="rejected">succ</a></p>
+
             <?php
         }
     // If the user just decided to type in the url for some reason, tell them to go away
