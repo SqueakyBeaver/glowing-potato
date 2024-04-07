@@ -32,7 +32,7 @@
         require('php/utils.php');
 
 
-        $DATABASE = new DB();
+        $DATABASE = new DB("config.ini");
 
         $animalErr = $factErr = $imageErr = "";
         $animal = $fact = $imagePath = "";

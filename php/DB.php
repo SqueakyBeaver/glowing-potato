@@ -4,14 +4,16 @@
 class DB {
     private $conn;
 
-    public function __construct() {
-        $dbConfig = parse_ini_file("config.ini", true)["database"];
+    // Since this file will be require()'d in different subfolders,
+    // We need to pass the path to config.ini because it could be
+    // "../config.ini" or "config.ini"
+    public function __construct($configPath) {
+        $dbConfig = parse_ini_file($configPath, true)["database"];
         $hostname = $dbConfig["hostname"];
         $user = $dbConfig["username"];
         $password = $dbConfig["password"];
         $dbName = $dbConfig["dbName"];
         try {
-            // This is not production safe, but it's fine for this
             $this->conn = new PDO("mysql:host=$hostname", $user, $password);
 
             // set the PDO error mode to exception

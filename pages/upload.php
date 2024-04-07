@@ -62,6 +62,7 @@
             <p class="rejected">Looks like you made a wrong input. Please <a href="../index.php">go back to the home page</a></p>
             <?php
         }
+    // If the user just decided to type in the url for some reason, tell them to go away
     } else {
         ?>
     <p class="rejected">Looks like you made a wrong Turn. Please <a href="../index.php">go back to the home page</a></p>
