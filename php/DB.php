@@ -3,6 +3,7 @@
 // I followed the W3Schools tutorial (mostly) (https://www.w3schools.com/php/php_mysql_intro.asp)
 class DB {
     private $conn;
+    private $createEntryStatement;
 
     // Since this file will be require()'d in different subfolders,
     // We need to pass the path to config.ini because it could be
@@ -33,15 +34,20 @@ class DB {
             $statement = $this->conn->query("SHOW TABLES LIKE 'AnimalEntries'");
             if (!(bool) $statement->fetchColumn()) {
                 // Only create the table if it doesn't exist
-                $sql = "CREATE TABLE AnimalEntries (
+                $sql = 'CREATE TABLE AnimalEntries (
                     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                     entry_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                     animal VARCHAR(50) NOT NULL,
                     fact VARCHAR(2000) NOT NULL,
                     image_path VARCHAR(100) DEFAULT NULL
-            )";
+            )';
                 $this->conn->exec($sql);
             }
+
+            // This is more efficient for creating database entries
+            $this->createEntryStatement = $this->conn->prepare(
+                'INSERT INTO AnimalEntries (animal, fact, image_path) VALUES (?, ?, ?)'
+            );
         } catch (PDOException $e) {
             echo $sql . "<br>" . $e->getMessage();
         }
@@ -51,18 +57,12 @@ class DB {
         return $this->conn;
     }
 
-    public function createEntry($animal, $fact, $path = null) {
-        if ($path === null) {
-            $sql = "INSERT INTO AnimalEntries (animal, fact)
-            VALUES ('$animal', '$fact')";
-        } else {
-            $sql = "INSERT INTO AnimalEntries (animal, fact, image_path)
-            VALUES ('$animal', '$fact', '$path')";
-        }
+    public function createEntry($animal, $fact, $imgPath = null) {
         try {
-            $this->conn->exec($sql);
+            $this->createEntryStatement->execute(array($animal, $fact, $imgPath));
         } catch (PDOException $e) {
-            echo $sql . "<br>" . $e->getMessage();
+            echo "$animal | $fact | $imgPath" . "<br>" . $e->getMessage() . "<br><br>";
+            print_r($e->getTraceAsString());
         }
     }
 
@@ -73,7 +73,7 @@ class DB {
     public function getNextID() {
         // Get the value that will next be auto incremented 
         $sql = "SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE (TABLE_NAME = 'AnimalEntries')";
-        
+
         $statement = $this->conn->query($sql);
         return $statement->fetchColumn();
     }

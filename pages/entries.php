@@ -36,6 +36,7 @@
         foreach ($DATABASE->getEntries() as $entry) {
         ?>
             <div class="entry-card">
+                <p class="animal"><?= htmlspecialchars($entry["animal"]) ?></p>
                 <?php
                 if ($entry["image_path"]) {
                 ?>
@@ -43,7 +44,6 @@
                 <?php
                 }
                 ?>
-                <p class="animal"><?= htmlspecialchars($entry["animal"]) ?></p>
                 <p class="fact"><?= htmlspecialchars($entry["fact"]) ?></p>
                 <p class="timestamp">Created at <?= $entry["entry_time"] ?></p>
             </div>
@@ -51,6 +51,9 @@
         }
         ?>
     </div>
+    <?php
+    require('../php/templates/footer.php');
+    ?>
 </body>
 
 </html>

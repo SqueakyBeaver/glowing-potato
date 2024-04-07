@@ -102,6 +102,6 @@
         </div>
         <!-- <script src="js/input.js"></script> -->
         <script src="js/popups.js"></script>
-        
+        <?php require('php/templates/footer.php'); ?>
     </body>
 </html>

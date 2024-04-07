@@ -1,6 +1,7 @@
 @import url('./colors.css');
 
 body {
+    overflow: hidden;
     padding: 0;
     margin: 0;
     font-size: large;
@@ -8,6 +9,7 @@ body {
 
 /* Top header */
 .top-header {
+    height: 5vh;
     padding: 1.5rem 0 1.75rem;
     border-bottom: groove 2px;
     margin: 0;
@@ -20,8 +22,10 @@ body {
 
 #site-logo {
     padding: 2rem;
+    color: black;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 200%;
+    text-decoration: none;
 }
 
 .header-links {
@@ -52,4 +56,40 @@ body {
 
 .top-header li:hover {
     outline: 2px solid skyblue;
+}
+
+/* footer */
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    padding: .1rem 1rem;
+    border-top: 2px solid var(--primary-border-color);
+    margin: 0;
+    background: linear-gradient(
+        to bottom,
+        var(--primary-bg-color-from),
+        var(--primary-bg-color-to)
+    );
+    text-align: center;
+}
+
+.footer-links {
+    display: block;
+    padding: 0;
+    margin: 0;
+    columns: 3;
+    list-style: none;
+}
+
+.footer-links a {
+    /* text-decoration: none; */
+    color: black;
+}
+
+.footer-links > li {
+    padding: 1vh 1vw;
+    border-radius: 5px;
+    margin: 0;
+    margin-left: 5vw;
 }

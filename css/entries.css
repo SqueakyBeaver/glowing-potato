@@ -1,17 +1,52 @@
 @import url('./colors.css');
 
+.entries-container {
+    overflow: scroll;
+    width: 100vw;
+    height: 85vh;
+    box-sizing: border-box;
+    padding: 0;
+    margin: -5vh 0; /* -5vh keeps the cutoff from looking bad */
+}
+
 .entry-card {
+    position: relative;
     width: 30%;
-    padding: 1rem;
-    border: solid 2px black;
+    padding:  0 1rem;
+    border: solid 2px var(--secondary-border-color);
     border-radius: 10px;
     margin: auto;
-    margin-top: 1rem;
+        margin-top: 1rem;
     margin-bottom: 1rem;
     background: linear-gradient(
         to top,
         var(--secondary-bg-color-from),
         var(--secondary-bg-color-to)
     );
-    box-shadow: 10px 5px 2px 2px darkgrey;
+    box-shadow: 10px 5px 10px 2px var(--shadow-color);
+    text-align: center;
+}
+
+.entry-card .animal {
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 1px solid var(--secondary-border-color);
+    margin-top: 0;
+    margin-right: -1rem;
+    font-size: larger;
+    text-align: center;
+}
+
+.entry-card .timestamp {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    font-size: small;
+}
+
+.entry-card img {
+    display: block;
+    max-width: 100%;
+    max-height: 30vh;
+    border-radius: 10px;
+    margin: auto;
 }

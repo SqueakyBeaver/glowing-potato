@@ -22,4 +22,5 @@
     --secondary-border-color: hsl(271.3, 96%, 9.8%);
     --secondary-border-color-active: hsl(271.1, 77.8%, 42.4%);
     --primary-border-color: hsl(240, 34.5%, 23.3%);
+    --shadow-color: hsl(240, 38%, 74%);
 }
