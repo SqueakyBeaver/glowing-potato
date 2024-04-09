@@ -1,3 +1,7 @@
+<?php
+    // Start the session so we can store and access variables in the $_SESSION array
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,51 +32,54 @@
 
     require('../php/DB.php');
     require('../php/utils.php');
-    var_dump($_FILES);
 
     if (!isset($DATABASE)) {
         $DATABASE = new DB("../config.ini");
     }
+
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $redirect = false;
 
         // If it's empty, let it be known
         if (empty($_POST["animal"])) {
-            $animalErr = "Animal is required";
             $redirect = true;
         } else {
-            $animal = cleanText($_POST["animal"]);
+            $_SESSION["inputs"]["animal"] = cleanText($_POST["animal"]);
+
             $id = $DATABASE->getNextID();
-            $imagePath = "../images/submissions/" . $animal . $id;
+            $imagePath = "../images/submissions/" . $_SESSION["inputs"]["animal"] . $id;
         }
 
         // If it's empty, let it be known
         if (empty($_POST["fact"])) {
-            $factErr = "Fact is required";
             $redirect = true;
         } else {
-            $fact = cleanText($_POST["fact"]);
+            $_SESSION["inputs"]["fact"] = cleanText($_POST["fact"]);
         }
+
         if (!empty($_FILES["animal-image"]["tmp_name"])) {
             if (validateImage() && !empty($imagePath)) {
                 // Append the file extension
                 $imagePath = "$imagePath." . pathinfo($_FILES["animal-image"]["name"], PATHINFO_EXTENSION);
 
                 if (!move_uploaded_file($_FILES["animal-image"]["tmp_name"], "$imagePath")) {
-                    $imageErr = "File not uploaded. Please try again.";
                     $redirect = true;
                 }
             }
         } else {
             $imagePath = "";
         }
+
+
         if ($redirect) {
     ?>
             <p class="rejected">Looks like you made a wrong input. Please <a href="../index.php">go back to the home page</a></p>
+
         <?php
+            // All inputs are good
         } else {
-            $DATABASE->createEntry($animal, $fact, $imagePath);
+            $DATABASE->createEntry($_SESSION["inputs"]["animal"], $_SESSION["inputs"]["fact"], $imagePath);
         ?>
             <p class="rejected">succ</a></p>
 

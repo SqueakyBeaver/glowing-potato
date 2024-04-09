@@ -1,3 +1,7 @@
+<?php
+    // Start the session so we can store and access variables in the $_SESSION array
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -33,12 +37,6 @@
 
 
         $DATABASE = new DB("config.ini");
-
-        $animalErr = $factErr = $imageErr = "";
-        $animal = $fact = $imagePath = "";
-
-
-        // require('php/upload.php');
         ?>
 
         <!-- Top header -->
@@ -67,26 +65,31 @@
         <div id="main-container">
             <!-- Input -->
             <form id="input-form" method="post" enctype="multipart/form-data" action="pages/upload.php">
-                <p class="error">* is required</p>
+                <p class="required">* is required</p>
                 <label>Animal:&nbsp;&nbsp;</label><input
                     id="animal-input"
                     class="input"
                     type="text"
                     name="animal"
-                    value="<?= $animal ?>"
+                    required="true"
+                    maxlength="30"
+                    value="<?= $_SESSION["inputs"]["animal"] ?>"
                     >
-                    <span class="error">* <?= $animalErr ?></span>
+                    <span class="required">*</span>
                 <br><br>
+
                 <label>Fact:&nbsp;&nbsp;</label><textarea
                     id="fact-input"
                     class="input"
                     rows="5"
                     cols="30"
                     name="fact"
-                    value="<?= $fact ?>"
-                    ></textarea>
-                    <span class="error">* <?= $factErr ?></span>
+                    required="true"
+                    maxlength="2000"
+                    ><?= $_SESSION["inputs"]["fact"] ?></textarea>
+                    <span class="required">*</span>
                     <br><br>
+
                 <label>Image:&nbsp;&nbsp;</label><input
                     id="image-input"
                     class="input"
@@ -95,12 +98,11 @@
                     name="animal-image"
                     value="<?= $_FILES["animal-image"] ?>"
                     >
-                    <span class="error"><?= $imageErr ?></span>
                     <br><br>
-                <button id="submit-main-input" name="submit">Submit</button>
+                    
+                <input type="submit" id="submit-main-input" value="submit"></input>
                 </form>
         </div>
-        <!-- <script src="js/input.js"></script> -->
         <script src="js/popups.js"></script>
         <?php require('php/templates/footer.php'); ?>
     </body>

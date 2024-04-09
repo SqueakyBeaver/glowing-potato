@@ -37,14 +37,15 @@ class DB {
                 $sql = 'CREATE TABLE AnimalEntries (
                     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                     entry_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-                    animal VARCHAR(50) NOT NULL,
-                    fact VARCHAR(2000) NOT NULL,
+                    animal VARCHAR(100) NOT NULL,
+                    fact VARCHAR(4000) NOT NULL,
                     image_path VARCHAR(100) DEFAULT NULL
             )';
                 $this->conn->exec($sql);
             }
 
             // This is more efficient for creating database entries
+            // The '?'s will be replaced with variables when we execute the statement
             $this->createEntryStatement = $this->conn->prepare(
                 'INSERT INTO AnimalEntries (animal, fact, image_path) VALUES (?, ?, ?)'
             );

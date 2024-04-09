@@ -31,16 +31,9 @@
             <a href="#">About this project</a>
             <div class="popup-content">
                 <p>
-                    This is a project for my intro to web development
-                    class. It isn't the prettiest since I'm kind of
-                    really bad at color design. The source is available
-                    <!-- target="_blank" opens it in a new tab -->
-                    <a href="https://github.com/SqueakyBeaver/glowing-potato" target="_blank">
-                        here
-                    </a>
-                </p>
-                <p>
-                    P.S. you can type "clear" into the input box.
+                    Upload a fact about a certain animal using the box on the homepage.
+                    You can also view all the entries by clicking the "view all entries" button at the top of the page.<br>
+                    This idea is completely different than what was present at the previous project drop.
                 </p>
             </div>
         </li>
@@ -53,11 +46,23 @@
                         Make everything prettier (I suck at colors and
                         this will take me a long time)
                     </li>
-                    <li>Actually implement guessing the animal</li>
-                    <li>Add a few more things to sidebars</li>
                     <li>
-                        Make clicking the bubbles in the main content
-                        show a sort of popup
+                        Possibly allow to view specific entries
+                    </li>
+                    <li>
+                        Enlarge images when you click on them
+                    </li>
+                    <li>
+                        Add "Fact of the day" sidebar
+                    </li>
+                    <li>
+                        Possibly make the site friendlier to use on phones
+                    </li>
+                    <li>
+                        Possibly add a dark mode
+                    </li>
+                    <li>
+                        Make some of the PHP code more elegant
                     </li>
                 </ul>
             </div>
