@@ -4,6 +4,7 @@
 class DB {
     private $conn;
     private $createEntryStatement;
+    private $getCreatedEntryStatement;
 
     // Since this file will be require()'d in different subfolders,
     // We need to pass the path to config.ini because it could be
@@ -44,13 +45,29 @@ class DB {
                 $this->conn->exec($sql);
             }
 
-            // This is more efficient for creating database entries
+            // Preparing statements is more efficient for creating many database entries
+            // It is also safer as it sanitizes entries
             // The '?'s will be replaced with variables when we execute the statement
             $this->createEntryStatement = $this->conn->prepare(
                 'INSERT INTO AnimalEntries (animal, fact, image_path) VALUES (?, ?, ?)'
             );
+
+            // Get the last entry
+            $this->getCreatedEntryStatement = $this->conn->prepare(
+                'SELECT * FROM AnimalEntries
+                ORDER BY id DESC
+                LIMIT 1'
+            );
+
+            $this->populateEntries();
         } catch (PDOException $e) {
             echo $sql . "<br>" . $e->getMessage();
+
+?>
+            <p><br>Looks like there is a database error.
+                Try going to the version on <a href="">replit</a></p>
+<?php
+
         }
     }
 
@@ -61,6 +78,10 @@ class DB {
     public function createEntry($animal, $fact, $imgPath = null) {
         try {
             $this->createEntryStatement->execute(array($animal, $fact, $imgPath));
+
+            $this->getCreatedEntryStatement->execute();
+            echo "<br>";
+            return $this->getCreatedEntryStatement->fetch();
         } catch (PDOException $e) {
             echo "$animal | $fact | $imgPath" . "<br>" . $e->getMessage() . "<br><br>";
             print_r($e->getTraceAsString());
@@ -77,5 +98,28 @@ class DB {
 
         $statement = $this->conn->query($sql);
         return $statement->fetchColumn();
+    }
+
+    // So that there isn't a blank sheet of entries on startup
+    function populateEntries() {
+        if (!empty($this->getEntries())) {
+            return;
+        }
+
+        $this->createEntry(
+            "Polar bear",
+            "The polar bear is the largest bear species. It can weigh up to 1500 pounds and can be almost 10 feet long",
+            "../images/submissions/polar_bear.jpg"
+        );
+        $this->createEntry(
+            "Bat",
+            "There are over 1400 species of bats",
+            "../images/submissions/fruit_bat.jpg"
+        );
+        $this->createEntry(
+            "I don't know",
+            "    This is just to showcase that html characters will be converted and extra spaces on the ends will be removed.            ",
+            ""
+        );
     }
 }

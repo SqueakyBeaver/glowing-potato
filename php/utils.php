@@ -1,6 +1,7 @@
 <?php
-function cleanText($s) {
-    return stripslashes(trim($s));
+function cleanText(&$s) {
+    $s = htmlspecialchars(stripslashes(trim($s)));
+    return $s;
 }
 
 function validateImage() {
