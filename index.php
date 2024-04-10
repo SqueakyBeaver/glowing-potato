@@ -98,6 +98,7 @@
                     name="animal-image"
                     value="<?= $_FILES["animal-image"] ?>"
                     >
+                    Max size is 5MB
                     <br><br>
                     
                 <input type="submit" id="submit-main-input" value="submit"></input>

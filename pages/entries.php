@@ -16,6 +16,7 @@
 
 <body>
     <?php require('../php/templates/header.php'); ?>
+
     <div class="entries-container">
         <?php
         $genConfig = parse_ini_file("../config.ini", true)["database"];
@@ -29,14 +30,17 @@
         require('../php/DB.php');
         require('../php/utils.php');
 
+
         if (!isset($DATABASE)) {
             $DATABASE = new DB("../config.ini");
         }
+
 
         foreach ($DATABASE->getEntries() as $entry) {
         ?>
             <div class="entry-card">
                 <p class="animal"><?= htmlspecialchars($entry["animal"]) ?></p>
+
                 <?php
                 if ($entry["image_path"]) {
                 ?>
@@ -44,6 +48,7 @@
                 <?php
                 }
                 ?>
+
                 <p class="fact"><?= htmlspecialchars($entry["fact"]) ?></p>
                 <p class="timestamp">Created at <?= $entry["entry_time"] ?></p>
             </div>
@@ -51,9 +56,8 @@
         }
         ?>
     </div>
-    <?php
-    require('../php/templates/footer.php');
-    ?>
+
+    <?php require('../php/templates/footer.php'); ?>
 </body>
 
 </html>

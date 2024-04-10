@@ -1,7 +1,8 @@
 <?php
-    // Start the session so we can store and access variables in the $_SESSION array
-    session_start();
+// Start the session so we can store and access variables in the $_SESSION array
+session_start();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,22 +41,28 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $redirect = false;
+        $error = "";
+        $animal = cleanText($_POST["animal"]);
+        $fact = cleanText($_POST["fact"]);
 
-        // If it's empty, let it be known
-        if (empty($_POST["animal"])) {
+
+        // If it's just whitespace, mainly
+        if (empty($animal)) {
             $redirect = true;
+            $error = $error . "Make sure your animal name is correct<br>";
         } else {
-            $_SESSION["inputs"]["animal"] = cleanText($_POST["animal"]);
+            $_SESSION["inputs"]["animal"] = $animal;
 
             $id = $DATABASE->getNextID();
             $imagePath = "../images/submissions/" . $_SESSION["inputs"]["animal"] . $id;
         }
 
-        // If it's empty, let it be known
-        if (empty($_POST["fact"])) {
+
+        if (empty($fact)) {
             $redirect = true;
+            $error = $error . "Make sure your fact is correct<br>";
         } else {
-            $_SESSION["inputs"]["fact"] = cleanText($_POST["fact"]);
+            $_SESSION["inputs"]["fact"] = $fact;
         }
 
         if (!empty($_FILES["animal-image"]["tmp_name"])) {
@@ -63,12 +70,14 @@
                 // Append the file extension
                 $imagePath = "$imagePath." . pathinfo($_FILES["animal-image"]["name"], PATHINFO_EXTENSION);
 
+                // Save the file. If it fails, tell the user
                 if (!move_uploaded_file($_FILES["animal-image"]["tmp_name"], "$imagePath")) {
                     $redirect = true;
                 }
             }
         } else {
             $imagePath = "";
+            $error = $error . "Make sure the image is correct and is smaller than 5MB<br>";
         }
 
 
