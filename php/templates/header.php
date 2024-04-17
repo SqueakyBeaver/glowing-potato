@@ -4,7 +4,7 @@
     // Since the relative location of index.php can change
     // If the file that require()'d this file is in the 
     // pages subfolder, we change the path
-    $rooDir = "./";
+    $rootDir = "./";
     if (str_contains($_SERVER["PHP_SELF"], "pages")) {
         $rootDir = "../";
     }

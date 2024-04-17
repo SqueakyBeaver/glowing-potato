@@ -58,14 +58,13 @@ class DB {
                 ORDER BY id DESC
                 LIMIT 1'
             );
-
             $this->populateEntries();
         } catch (PDOException $e) {
-            echo $sql . "<br>" . $e->getMessage();
+            echo $sql . "<br>" . $e->getMessage() . "<br>" . $e->getTraceAsString();
 
 ?>
             <p><br>Looks like there is a database error.
-                Try going to the version on <a href="">replit</a></p>
+                Try going to the version on <a href="https://replit.com/@cosmic-sunburst/glowing-potato">replit</a></p>
 <?php
 
         }
@@ -102,7 +101,7 @@ class DB {
 
     // So that there isn't a blank sheet of entries on startup
     function populateEntries() {
-        if (!empty($this->getEntries())) {
+        if (empty($this->getEntries())) {
             return;
         }
 

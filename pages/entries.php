@@ -19,7 +19,7 @@
 
     <div class="entries-container">
         <?php
-        $genConfig = parse_ini_file("../config.ini", true)["database"];
+        $genConfig = parse_ini_file("../config.ini", true)["general"];
         if ($genConfig["debug"] === "true") {
             // Display errors better and display them in the browser
             ini_set('display_errors', 1);
