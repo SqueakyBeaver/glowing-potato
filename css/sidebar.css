@@ -1,0 +1,71 @@
+@import url('./colors.css');
+
+/* Right sidebar thing */
+.sidebar {
+    position: absolute;
+    width: 25%;
+    height: 75vh;
+    border: 2px solid black;
+    border-radius: 10px;
+    background: linear-gradient(
+        var(--primary-bg-color-from),
+        var(--primary-bg-color-to)
+    );
+}
+
+/* Right and Left sidebar */
+.right {
+    right: 2%;
+    margin-left: 2%;
+}
+
+.left {
+    left: 2%;
+    margin-right: 2%;
+}
+
+#fotv {
+    padding: 1em;
+    text-align: center;
+}
+
+
+#fotv .animal {
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 1px solid var(--secondary-border-color);
+    margin-top: 0;
+    margin-right: -1rem;
+    font-size: larger;
+    text-align: center;
+}
+
+#fotv .timestamp {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    font-size: small;
+}
+
+#fotv img {
+    display: block;
+    max-width: 100%;
+    max-height: 30vh;
+    border-radius: 10px;
+    margin: auto;
+}
+
+
+#coffee-container {
+    width: 90%;
+    padding: 1em;
+    margin: auto;
+    text-align: center;
+}
+
+#coffee-container p {
+    text-align: center;
+}
+
+#coffee-container img {
+    width: 50%;
+}

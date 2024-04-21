@@ -54,7 +54,7 @@ session_start();
             $_SESSION["inputs"]["animal"] = $animal;
 
             $id = $DATABASE->getNextID();
-            $imagePath = "../images/submissions/" . $_SESSION["inputs"]["animal"] . $id;
+            $imagePath = "images/submissions/" . $_SESSION["inputs"]["animal"] . $id;
         }
 
 

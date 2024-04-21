@@ -15,13 +15,11 @@ session_start();
     <link href="css/index.css" rel="stylesheet">
     <link href="css/mainContent.css" rel="stylesheet">
     <link href="css/popups.css" rel="stylesheet">
-    <link href="css/rightSidebar.css" rel="stylesheet">
+    <link href="css/sidebar.css" rel="stylesheet">
 
     <!-- Since this is just a class declaration,
             there is no need to put this in the body -->
     <script src="js/PopupContainer.js"></script>
-
-
 </head>
 
 <body>
@@ -33,15 +31,38 @@ session_start();
         ini_set('log_errors', 1);
         error_reporting(E_ALL);
     }
+
+    require('php/DB.php');
+
+    $DATABASE = new DB();
     ?>
 
     <!-- Top header -->
     <?php require('php/templates/header.php'); ?>
 
-    <!-- TODO: "fact of the visit" sidebar (once we setup mySQL db) -->
+    <!-- TODO: "fact of the visit" sidebar  -->
+    <div class="sidebar left">
+        <div id="fotv">
+            <?php
+            $entry = $DATABASE->getRandomEntry();
+            ?>
+            <p class="animal"><?= $entry["animal"] ?></p>
+
+            <?php
+            if (!empty($entry["image_path"])) {
+            ?>
+                <img src="<?= $entry["image_path"] ?>" alt="Image of a(n) <?= $entry["animal"] ?>">
+            <?php
+            }
+            ?>
+
+            <p class="fact"><?= $entry["fact"] ?></p>
+            <p class="timestamp"><?= $entry["entry_time"] ?></p>
+        </div>
+    </div>
 
     <!-- Sidebar thingy on the right -->
-    <div class="right-sidebar">
+    <div class="sidebar right">
         <!-- This is just a button to do something funny -->
         <div id="coffee-container">
             <img src="images/coffee.png" alt="cofee cup">
@@ -58,15 +79,18 @@ session_start();
         <!-- Input -->
         <form id="input-form" method="post" enctype="multipart/form-data" action="pages/upload.php">
             <p class="required">* is required</p>
-            <label>Animal:&nbsp;&nbsp;</label><input id="animal-input" class="input" type="text" name="animal" required="true" maxlength="30" value="<?= $_SESSION["inputs"]["animal"] ?>">
+            <label for="animal-input">Animal:&nbsp;&nbsp;</label>
+            <input id="animal-input" class="input" type="text" name="animal" required="true" maxlength="30" value="<?= $_SESSION["inputs"]["animal"] ?>">
             <span class="required">*</span>
             <br><br>
 
-            <label>Fact:&nbsp;&nbsp;</label><textarea id="fact-input" class="input" rows="5" cols="30" name="fact" required="true" maxlength="2000"><?= $_SESSION["inputs"]["fact"] ?></textarea>
+            <label for="fact-input">Fact:&nbsp;&nbsp;</label>
+            <textarea id="fact-input" class="input" rows="5" cols="30" name="fact" required="true" maxlength="2000"><?= $_SESSION["inputs"]["fact"] ?></textarea>
             <span class="required">*</span>
             <br><br>
 
-            <label>Image:&nbsp;&nbsp;</label><input id="image-input" class="input" type="file" accept="image/*" name="animal-image" value="<?= $_FILES["animal-image"] ?>">
+            <label for="image-input">Image:&nbsp;&nbsp;</label>
+            <input id="image-input" class="input" type="file" accept="image/*" name="animal-image">
             Max size is 5MB
             <br><br>
 

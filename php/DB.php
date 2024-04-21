@@ -60,7 +60,7 @@ class DB {
             );
             $this->populateEntries();
         } catch (PDOException $e) {
-            echo $sql . "<br>" . $e->getMessage() . "<br>" . $e->getTraceAsString();
+            echo $sql . "<br>1<br>" . $e->getMessage() . "<br>" . $e->getTraceAsString();
 
 ?>
             <p><br>Looks like there is a database error.
@@ -79,7 +79,6 @@ class DB {
             $this->createEntryStatement->execute(array($animal, $fact, $imgPath));
 
             $this->getCreatedEntryStatement->execute();
-            echo "<br>";
             return $this->getCreatedEntryStatement->fetch();
         } catch (PDOException $e) {
             echo "$animal | $fact | $imgPath" . "<br>" . $e->getMessage() . "<br><br>";
@@ -89,6 +88,11 @@ class DB {
 
     public function getEntries() {
         return $this->conn->query("SELECT * FROM AnimalEntries");
+    }
+
+    public function getRandomEntry() {
+        $statement =  $this->conn->query("SELECT * FROM AnimalEntries ORDER BY RAND() LIMIT 1");
+        return $statement->fetch();
     }
 
     public function getNextID() {
@@ -108,12 +112,12 @@ class DB {
         $this->createEntry(
             "Polar bear",
             "The polar bear is the largest bear species. It can weigh up to 1500 pounds and can be almost 10 feet long",
-            "../images/submissions/polar_bear.jpg"
+            "images/submissions/polar_bear.jpg"
         );
         $this->createEntry(
             "Bat",
             "There are over 1400 species of bats",
-            "../images/submissions/fruit_bat.jpg"
+            "images/submissions/fruit_bat.jpg"
         );
         $this->createEntry(
             "I don't know",

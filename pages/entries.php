@@ -44,7 +44,7 @@
                 <?php
                 if ($entry["image_path"]) {
                 ?>
-                    <img src="<?= $entry["image_path"] ?>" alt="Image of a <?= $entry["animal"] ?>">
+                    <img src="../<?= $entry["image_path"] ?>" alt="Image of a <?= $entry["animal"] ?>">
                 <?php
                 }
                 ?>
