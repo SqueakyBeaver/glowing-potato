@@ -39,7 +39,7 @@
         foreach ($DATABASE->getEntries() as $entry) {
         ?>
             <div class="entry-card">
-                <p class="animal"><?= htmlspecialchars($entry["animal"]) ?></p>
+                <p class="animal"><?= $entry["animal"] ?></p>
                 <hr>
                 <?php
                 if ($entry["image_path"]) {
@@ -49,7 +49,7 @@
                 }
                 ?>
 
-                <p class="fact"><?= htmlspecialchars($entry["fact"]) ?></p>
+                <p class="fact"><?= $entry["fact"] ?></p>
                 <hr>
                 <p class="timestamp">Created at <?= $entry["entry_time"] ?></p>
             </div>

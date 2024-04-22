@@ -71,7 +71,7 @@ session_start();
                 $imagePath = "$imagePath." . pathinfo($_FILES["animal-image"]["name"], PATHINFO_EXTENSION);
 
                 // Save the file. If it fails, tell the user
-                if (!move_uploaded_file($_FILES["animal-image"]["tmp_name"], "$imagePath")) {
+                if (!move_uploaded_file($_FILES["animal-image"]["tmp_name"], "../$imagePath")) {
                     $redirect = true;
                     array_push($errors, "Make sure the image is correct and is smaller than 5MB<br>");
                 }
@@ -118,7 +118,7 @@ session_start();
                 <?php
                 if ($entry["image_path"]) {
                 ?>
-                    <img src="<?= $entry["image_path"] ?>" alt="Image of a <?= $entry["animal"] ?>">
+                    <img src="../<?= $entry["image_path"] ?>" alt="Image of a <?= $entry["animal"] ?>">
                 <?php
                 }
                 ?>
