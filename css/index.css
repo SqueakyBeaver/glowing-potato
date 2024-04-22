@@ -61,6 +61,7 @@ body {
 /* footer */
 footer {
     position: absolute;
+    z-index: 1000;
     bottom: 0;
     width: 100vw;
     padding: .1rem 1rem;
@@ -72,6 +73,11 @@ footer {
         var(--primary-bg-color-to)
     );
     text-align: center;
+}
+
+footer > p {
+    margin: 3px;
+    font-weight: bold;
 }
 
 .footer-links {
@@ -91,5 +97,4 @@ footer {
     padding: 1vh 1vw;
     border-radius: 5px;
     margin: 0;
-    margin-left: 5vw;
 }

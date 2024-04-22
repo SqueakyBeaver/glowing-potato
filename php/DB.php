@@ -105,7 +105,7 @@ class DB {
 
     // So that there isn't a blank sheet of entries on startup
     function populateEntries() {
-        if (empty($this->getEntries())) {
+        if ($this->getEntries()->rowCount() > 0) {
             return;
         }
 

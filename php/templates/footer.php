@@ -1,4 +1,5 @@
 <footer>
+    <p>Created by Sylva Ford</p>
     <ul class="footer-links">
         <li class="popup-origin">
             <a href="#">About the creator</a>
@@ -39,31 +40,21 @@
         </li>
 
         <li class="popup-origin">
-            <a href="#">Future plans</a>
+            <a href="#">Explanation of Pages</a>
             <div class="popup-content">
                 <ul>
-                    <li>
-                        Make everything prettier (I suck at colors and
-                        this will take me a long time)
-                    </li>
-                    <li>
-                        Possibly allow to view specific entries
-                    </li>
-                    <li>
-                        Enlarge images when you click on them
-                    </li>
-                    <li>
-                        Add "Fact of the day" sidebar
-                    </li>
-                    <li>
-                        Possibly make the site friendlier to use on phones
-                    </li>
-                    <li>
-                        Possibly add a dark mode
-                    </li>
-                    <li>
-                        Make some of the PHP code more elegant
-                    </li>
+                    <?php
+                    // Since the relative location of the pages can change
+                    // If the file that require()'d this file is in the 
+                    // pages subfolder, we change the path
+                    $rootDir = "./";
+                    if (str_contains($_SERVER["PHP_SELF"], "pages")) {
+                        $rootDir = "../";
+                    }
+                    ?>
+                    <li>The <a href="<?= $rootDir ?>pages/entries.php">entries</a> page shows all the submitted facts</li>
+                    <li>The <a href="<?= $rootDir ?>pages/upload.php">upload</a> page is where you end up after you submit a fact</li>
+                    <li>The <a href="<?= $rootDir ?>index.php">home</a> page is where you can submit a fact and see a random fact each visit</li>
                 </ul>
             </div>
         </li>

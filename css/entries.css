@@ -1,12 +1,13 @@
 @import url('./colors.css');
 
 .entries-container {
+    position: relative;
     overflow: scroll;
     width: 100vw;
-    height: 85vh;
-    box-sizing: border-box;
+    height: 82vh;
+    box-sizing: content-box;
     padding: 0;
-    margin: -5vh 0; /* -5vh keeps the cutoff from looking bad */
+    margin: -5vh 0 5vh; /* -5vh keeps the cutoff from looking bad */
 }
 
 .entry-card {
