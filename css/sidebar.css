@@ -29,11 +29,9 @@
     text-align: center;
 }
 
-
 #fotv .animal {
     width: 100%;
     box-sizing: border-box;
-    border-bottom: 1px solid var(--secondary-border-color);
     margin-top: 0;
     margin-right: -1rem;
     font-size: larger;
@@ -54,6 +52,9 @@
     margin: auto;
 }
 
+#fotv hr {
+    border: 1px solid black;
+}
 
 #coffee-container {
     width: 90%;

@@ -61,7 +61,6 @@ body {
 /* footer */
 footer {
     position: absolute;
-    z-index: 1000;
     bottom: 0;
     width: 100vw;
     padding: .1rem 1rem;

@@ -31,11 +31,14 @@
 .entry-card .animal {
     width: 100%;
     box-sizing: border-box;
-    border-bottom: 1px solid var(--secondary-border-color);
     margin-top: 0;
     margin-right: -1rem;
     font-size: larger;
     text-align: center;
+}
+
+hr {
+    border: 1px solid black;
 }
 
 .entry-card .timestamp {
@@ -50,4 +53,8 @@
     max-height: 30vh;
     border-radius: 10px;
     margin: auto;
+}
+
+hr {
+    color: black;
 }

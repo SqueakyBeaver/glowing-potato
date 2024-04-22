@@ -47,7 +47,7 @@ session_start();
             $entry = $DATABASE->getRandomEntry();
             ?>
             <p class="animal"><?= $entry["animal"] ?></p>
-
+            <hr>
             <?php
             if (!empty($entry["image_path"])) {
             ?>
@@ -57,6 +57,7 @@ session_start();
             ?>
 
             <p class="fact"><?= $entry["fact"] ?></p>
+            <hr>
             <p class="timestamp"><?= $entry["entry_time"] ?></p>
         </div>
     </div>
@@ -80,12 +81,12 @@ session_start();
         <form id="input-form" method="post" enctype="multipart/form-data" action="pages/upload.php">
             <p class="required">* is required</p>
             <label for="animal-input">Animal:&nbsp;&nbsp;</label>
-            <input id="animal-input" class="input" type="text" name="animal" required="true" maxlength="30" value="<?= $_SESSION["inputs"]["animal"] ?>">
+            <input id="animal-input" class="input" type="text" name="animal" required="true" maxlength="30" value="<?= $_SESSION["inputs"]["animal"] ?? "" ?>">
             <span class="required">*</span>
             <br><br>
 
             <label for="fact-input">Fact:&nbsp;&nbsp;</label>
-            <textarea id="fact-input" class="input" rows="5" cols="30" name="fact" required="true" maxlength="2000"><?= $_SESSION["inputs"]["fact"] ?></textarea>
+            <textarea id="fact-input" class="input" rows="5" cols="30" name="fact" required="true" maxlength="2000"><?= $_SESSION["inputs"]["fact"] ?? "" ?></textarea>
             <span class="required">*</span>
             <br><br>
 

@@ -5,7 +5,7 @@
     position: relative;
     width: 40%;
     min-height: 25vh;
-    max-height: 50vh;
+    max-height: 75vh;
     padding: 0;
     border: 2px solid var(--primary-border-color);
     border-radius: 10px;
@@ -36,4 +36,9 @@
     display: inline-block;
     width: 5em;
     text-align: right;
+}
+
+textarea {
+    min-height: 2em;
+    max-height: 50vh;
 }
